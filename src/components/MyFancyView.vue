@@ -1,7 +1,7 @@
 <template>
   <div>
     <input v-model="data" />
-    <p>{{ data }}</p>
+    <p>The View's Text is: {{ props.text }}</p>
   </div>
 </template>
 
@@ -17,8 +17,8 @@ const emit = defineEmits(["update:text"])
 
 // GENERIC VUE STYLE
 // This creates a computed property that is bound to the prop "text"
-// If "text" changes via v-model, it fires a custom event to the ViewModel
-// To change the state of "text"
+// If "text" changes via **v-model**, it fires a custom event to the ViewModel
+// To change the state of "text". The custom event fired is "update:text"
 const data = computed({
   // getter: gets the prop
   get() {
@@ -29,6 +29,9 @@ const data = computed({
     emit("update:text", newValue)
   }
 })
+
+// The equivalent react code is:
+// <input value={text} onInput={(event)=> setText(event.target.value)} />
 </script>
 
 <style></style>
